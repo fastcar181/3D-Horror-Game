@@ -15,6 +15,7 @@ public class ThirdPersonCamera : MonoBehaviour
     // Start is called before the first frame update
     private void Start()
     {
+        // Prevent the cursor from being visible
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
     }
@@ -30,8 +31,7 @@ public class ThirdPersonCamera : MonoBehaviour
         float horizontalInput = Input.GetAxis("Horizontal");
         float verticalInput = Input.GetAxis("Vertical");
         Vector3 inputDir = orientation.forward * verticalInput + orientation.right * horizontalInput;
-        if (inputDir != Vector3.zero)
-        {
+        if (inputDir != Vector3.zero) {
             playerObj.forward = Vector3.Slerp(playerObj.forward, inputDir.normalized, Time.deltaTime * rotationSpeed);
         }
     }
